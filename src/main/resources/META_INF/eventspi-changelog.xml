@@ -1,0 +1,30 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+    http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="custom-events-1" author="droplet">
+        <createTable tableName="custom_event_log">
+            <column name="id" type="VARCHAR(36)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="event_type" type="VARCHAR(50)"/>
+            <column name="realm_id" type="VARCHAR(255)"/>
+            <column name="client_id" type="VARCHAR(255)"/>
+            <column name="ip_address" type="VARCHAR(64)"/>
+            <column name="channel" type="VARCHAR(128)"/>
+            <column name="event_time" type="TIMESTAMP" />
+        </createTable>
+        <createIndex indexName="idx_custom_event_id" tableName="custom_event_log">
+            <column name="id"/>
+        </createIndex>
+        <createIndex indexName="idx_custom_event_realmid" tableName="custom_event_log">
+            <column name="realm_id"/>
+        </createIndex>
+        <createIndex indexName="idx_custom_event_clientid" tableName="custom_event_log">
+            <column name="client_id"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
